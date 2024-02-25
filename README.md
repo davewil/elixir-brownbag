@@ -1,21 +1,10 @@
 # Brownbag
 
-**TODO: Add description**
+useful mix (elixir build tool) commands I've discovered so far...
+mix help
+mix format - applies standard Elixir formatting to source
+iex -S mix (iex.bat -S mix in PS) - loads project and all modules into IEx - can then interact with then in CLI
+mix run - run is also default command
+mix deps.get - installs any new Hex packages referenced - mix.exs is sort of like package.json
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `brownbag` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:brownbag, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/brownbag>.
 
