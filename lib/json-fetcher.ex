@@ -1,6 +1,6 @@
 defmodule JsonFetcher do
   def get_json() do
-    with {:ok, contents} <- File.read("..\\game.json"),
+    with {:ok, contents} <- File.read("./game.json"),
          {:ok, json} <- Jason.decode!(contents),
          do: IO.puts("#{json}")
   end
