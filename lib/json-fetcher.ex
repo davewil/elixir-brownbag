@@ -6,12 +6,11 @@ defmodule JsonFetcher do
   end
 
   def get_json2() do
-    data = Req.get!("https://upredict.co.uk/games/39-2023-26", decode_json: [keys: :atoms]).body
-
-    %{player: player, matchdays: matchdays} = data
-    %{name: homeTeam} = (hd matchdays.requested.fixtures).homeTeam
-
-    "#{player.isPlaying} " <> "#{homeTeam}"
+    with data =
+           Req.get!("https://upredict.co.uk/games/39-2023-26", decode_json: [keys: :atoms]).body,
+         %{player: player, matchdays: matchdays} = data,
+         %{name: homeTeam} = hd(matchdays.requested.fixtures).homeTeam,
+         do: "#{player.isPlaying} " <> "#{homeTeam}"
 
     # Map.fetch(data, :player)
     # Map.fetch(data, :matchdays)
