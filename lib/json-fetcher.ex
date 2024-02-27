@@ -5,6 +5,11 @@ defmodule JsonFetcher do
          do: IO.puts("#{json}")
   end
 
+  @spec hello() :: <<_::40>>
+  def hello() do
+    "hello"
+  end
+
   def get_json2() do
     with data =
            Req.get!("https://upredict.co.uk/games/39-2023-26", decode_json: [keys: :atoms]).body,
