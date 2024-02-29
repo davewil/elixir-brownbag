@@ -1,5 +1,5 @@
 defmodule SimpleQueue do
-  #https://elixirschool.com/en/lessons/advanced/otp_concurrency
+  # https://elixirschool.com/en/lessons/advanced/otp_concurrency
   use GenServer
 
   @doc """
@@ -7,7 +7,7 @@ defmodule SimpleQueue do
   This is a helper functon
   """
 
-  def start_link (state \\ []) do
+  def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
 
@@ -16,7 +16,7 @@ defmodule SimpleQueue do
   """
   def init(state), do: {:ok, state}
 
-  def handle_call(:dequeue, _from, [value| state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
 
@@ -30,12 +30,10 @@ defmodule SimpleQueue do
 
   def handle_cast({:enqueue, value}, state) do
     {:noreply, state ++ [value]}
-
   end
 
   ### Client API / Helper functions
   def queue, do: GenServer.call(__MODULE__, :queue)
   def enqueue(value), do: GenServer.cast(__MODULE__, {:enqueue, value})
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
-
 end

@@ -1,3 +1,2 @@
 defmodule Fixtures do
-
 end

@@ -1,15 +1,15 @@
+#https://elixirschool.com/en/lessons/intermediate/concurrency
 defmodule Example do
-
-  #simple spawn example
+  # simple spawn example
   def add(a, b) do
-    IO.puts(a+b)
+    IO.puts(a + b)
   end
 
   def demo_spawn_add() do
-    spawn(Example, :add, [2,3])
+    spawn(Example, :add, [2, 3])
   end
 
-  #message passing example
+  # message passing example
   def listen do
     receive do
       {:ok, "hello"} -> IO.puts("World")
@@ -21,11 +21,11 @@ defmodule Example do
   def demo_message_passing() do
     pid = spawn(Example, :listen, [])
 
-    send pid, {:ok, "hello"}
-    send pid, :ok
+    send(pid, {:ok, "hello"})
+    send(pid, :ok)
   end
 
-  #process linking
+  # process linking
   def explode, do: exit(:kaboom)
 
   def demo_process_linking() do
@@ -43,7 +43,7 @@ defmodule Example do
     end
   end
 
-  #process monitoring
+  # process monitoring
   def run_2 do
     spawn_monitor(Example, :explode, [])
 
@@ -52,33 +52,32 @@ defmodule Example do
     end
   end
 
-  #agents
+  # agents
   def demo_agents_1() do
-    {:ok, agent}  = Agent.start_link(fn -> [1,2,3] end)
+    {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
 
-    Agent.update(agent, fn (state) -> state ++ [4,5] end)
+    Agent.update(agent, fn state -> state ++ [4, 5] end)
 
-    Agent.get(agent, &(&1))
+    Agent.get(agent, & &1)
   end
 
   def demo_agents_2() do
-    Agent.start_link(fn -> [1,2,3] end, name: Numbers)
+    Agent.start_link(fn -> [1, 2, 3] end, name: Numbers)
 
-    Agent.get(Numbers, &(&1))
+    Agent.get(Numbers, & &1)
   end
 
-  #taks
+  # tasks
   def double(x) do
     :timer.sleep(2000)
-    x * 2
+    IO.puts (x * 2)
   end
 
   def demo_tasks() do
-    task = Task.async(Example, :double, [2000])
+    task = Task.async(Example, :double, [4232423])
 
-    IO.puts "Doing some other stuff"
+    IO.puts("Doing some other stuff")
 
     Task.await(task)
   end
-
 end
