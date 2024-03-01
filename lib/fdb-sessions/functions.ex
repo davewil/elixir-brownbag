@@ -2,7 +2,7 @@ defmodule Functions do
   # recursive function calls - https://elixirschool.com/en/lessons/basics/functions#named-functions-2
   @spec of([number()]) :: number()
   def of([]), do: 0
-  def of([head | tail]), do: head * 1 + of(tail)
+  def of([_ | tail]), do: 1 + of(tail)
 
   def demo_recursive_call() do
     IO.puts(of([]))

@@ -11,10 +11,11 @@ defmodule JsonFetcher do
   end
 
   def get_json2() do
-    with data <- Req.get!("https://upredict.co.uk/games/39-2023-27", decode_json: [keys: :atoms]).body,
+    with data <-
+           Req.get!("https://upredict.co.uk/games/39-2023-27", decode_json: [keys: :atoms]).body,
          %{player: player, matchdays: matchdays} <- data,
-         %{name: home_team} <- hd(matchdays.requested.fixtures).homeTeam
-    do "#{player.isPlaying} " <> "#{home_team}"
+         %{name: home_team} <- hd(matchdays.requested.fixtures).homeTeam do
+      "#{player.isPlaying} " <> "#{home_team}"
     else
       err -> err
     end

@@ -1,4 +1,4 @@
-#https://elixirschool.com/en/lessons/intermediate/concurrency
+# https://elixirschool.com/en/lessons/intermediate/concurrency
 defmodule Example do
   # simple spawn example
   def add(a, b) do
@@ -70,11 +70,11 @@ defmodule Example do
   # tasks
   def double(x) do
     :timer.sleep(2000)
-    IO.puts (x * 2)
+    IO.puts(x * 2)
   end
 
   def demo_tasks() do
-    task = Task.async(Example, :double, [4232423])
+    task = Task.async(Example, :double, [4_232_423])
 
     IO.puts("Doing some other stuff")
 
