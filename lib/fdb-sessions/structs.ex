@@ -1,5 +1,9 @@
 defmodule Structs.Example do
   defstruct name: "Olga", roles: [:manager]
+
+  def do_something(user) do
+    IO.puts (user.name)
+  end
 end
 
 defmodule Structs.Demos do
@@ -9,5 +13,9 @@ defmodule Structs.Demos do
     olga = %Structs.Example{name: :Olga}
     olga = %{olga | name: :David}
     IO.inspect(olga, label: "part new, part old")
+
+    user = %{name: "David"}
+
+    Structs.Example.do_something(user)
   end
 end
